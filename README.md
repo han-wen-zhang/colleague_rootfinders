@@ -55,6 +55,7 @@ call zrootsq_adap(ifprint, ifnewton, ifres, fun, par1, par2,
 ```
 
 - `fun(z, par1, par2, val, dval)` — complex analytic function with derivative
+- `norder` — expansion order (max 100, recommended 40 for adaptive version)
 - `center` — center of search square (complex)
 - `sqw` — side length of search square
 - Residue-based root counting for verification (`ifres=1`)
