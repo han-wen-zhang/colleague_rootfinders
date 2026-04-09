@@ -156,7 +156,34 @@ c
 c
 c
 c
-c 
+        subroutine zgeigvals(n,a,w,ier)
+        implicit none
+        integer n,ier,info,lwork,j,k
+        complex*16 a(n,n),w(n)
+        complex*16, allocatable :: acopy(:,:),work(:)
+        complex*16 vl(1,1),vr(1,1)
+        real*8, allocatable :: rwork(:)
+        complex*16 wopt
+c
+        allocate(acopy(n,n),rwork(2*n))
+        do k = 1,n
+          do j = 1,n
+            acopy(j,k) = a(j,k)
+          enddo
+        enddo
+c
+        call zgeev('N','N',n,acopy,n,w,vl,1,vr,1,
+     1    wopt,-1,rwork,info)
+        lwork = int(dble(wopt))
+        allocate(work(lwork))
+        call zgeev('N','N',n,acopy,n,w,vl,1,vr,1,
+     1    work,lwork,rwork,info)
+        ier = info
+        deallocate(acopy,work,rwork)
+        return
+        end
+c
+c
 c
         subroutine bubble(cs,n)
         implicit real *8 (a-h,o-z)
