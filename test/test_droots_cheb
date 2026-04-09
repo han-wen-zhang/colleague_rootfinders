@@ -3,17 +3,17 @@ shopt -s expand_aliases
 
 alias gf77='gfortran -std=legacy -w -ffixed-line-length-none'
 
-LIB=/Users/hanwen/Dropbox/Werk/myfortran/
-SRC=/Users/hanwen/Dropbox/Werk/myfortran/rootfinders/src/
-FFLAGS='-g -O0 -fcheck=all -fbacktrace'
+SRC=../src/
+FFLAGS='-fbacktrace'
 
 rm -f *.o int2
 
 gf77 $FFLAGS -c test_droots_cheb.f
 gf77 $FFLAGS -c -o droots_cheb.o ${SRC}droots_cheb.f
 gf77 $FFLAGS -c -o herm_p_rank1.o ${SRC}herm_p_rank1.f
+gf77 $FFLAGS -c -o prini.o ${SRC}prini.f
 gf77 $FFLAGS -o int2 test_droots_cheb.o droots_cheb.o herm_p_rank1.o \
-  ${LIB}prini_new.o ${LIB}corrand.o ${LIB}mplot.o \
+  prini.o \
 -framework Accelerate
 
 ./int2
