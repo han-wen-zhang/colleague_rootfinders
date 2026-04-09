@@ -6,11 +6,11 @@ A Fortran library for finding roots of analytic functions. Includes rootfinders 
 
 The library implements two complementary approaches:
 
-**Chebyshev expansion on intervals** ([arXiv:2102.12186](https://arxiv.org/abs/2102.12186)): Expands the function in a Chebyshev basis, constructs the colleague matrix, and finds roots as eigenvalues using an O(n²) Hermitian + rank-1 QR eigensolver with componentwise backward stability. Works for real or complex-valued functions on real intervals [a,b]. Adaptive binary subdivision for functions requiring high resolution.
+**Chebyshev expansion on intervals** ([arXiv:2102.12186](https://arxiv.org/abs/2102.12186)): Expands the function in a Chebyshev basis, constructs the colleague matrix, and finds roots as eigenvalues using an O(n²) Hermitian + rank-1 QR eigensolver with componentwise backward stability. Works for real or complex-valued functions on real intervals [a,b]. Adaptive binary subdivision for functions requiring high resolution. Modified from code written by Kirill Serkh.
 
 **Polynomial expansion on squares** ([arXiv:2307.14494](https://arxiv.org/abs/2307.14494)): Expands a complex analytic function on the boundary of a square using polynomials orthogonal on the boundary (evaluated via three-term recurrence), then finds roots as eigenvalues of a generalized colleague matrix using an O(n²) QR algorithm with complex orthogonal rotations. Adaptive quadtree subdivision for large regions with many roots. Optional residue-based root counting for verification.
 
-Both methods are backward stable and achieve machine precision with optional Newton refinement.
+The Chebyshev method is provably componentwise backward stable. The square method achieves machine precision experimentally. Both support optional Newton refinement.
 
 ## Entry points
 
