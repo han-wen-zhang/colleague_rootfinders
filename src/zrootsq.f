@@ -47,7 +47,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
         complex *16 center,roots(*)
         dimension errest(*),par1(*),par2(*)
 c
-c       max norder = 150, npt = 4*150 = 600
+c       max norder = 100, npt = 4*norder, arrays sized generously at 600
 c
         complex *16 z(600),cw(600)
         complex *16 q(600,151),aqr(600,151),tau(151)
@@ -215,7 +215,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccc
         real *8 par1(*),par2(*),errest(*)
         complex *16 center,roots(*),centers(*)
 c
-c       max norder = 150, npt = 4*150 = 600
+c       max norder = 100, npt = 4*norder, arrays sized generously at 600
 c
         complex *16 z(600),cw(600)
         complex *16 q(600,151),aqr(600,151),tau(151)
