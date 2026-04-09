@@ -12,7 +12,7 @@ The library implements two complementary approaches:
 
 The Chebyshev method is provably componentwise backward stable. The square method achieves machine precision experimentally. Both support optional Newton refinement.
 
-## Entry points
+## Main subroutines
 
 ### Real roots on [a,b]
 
