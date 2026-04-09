@@ -106,7 +106,17 @@ c
         call prin2('roots *',roots,nroots)
 
 c
-c test 11: sin(100x)/((x-0.3)(x+0.7)(x-0.9)) on [-1,1]
+c test 11: sin(x) on [100,110], large roots
+c
+        print *,'=== sin(x) on [100,200], n=20 ==='
+        ifn=1
+        call droots_cheb_adap(ifn,dtest_sin,par1,par2,
+     1      100d0,200d0,20,eps,0,roots,nroots,errest,ier)
+        call test_report(ifn,nroots,ier,errest)
+        call prin2('roots *',roots,nroots)
+
+c
+c test 12: sin(100x)/((x-0.3)(x+0.7)(x-0.9)) on [-1,1]
 c 3 poles inside, many roots, n=20
 c
         print *,'=== sin(100x)/((x-0.3)(x+0.7)(x-0.9)), n=20 ==='

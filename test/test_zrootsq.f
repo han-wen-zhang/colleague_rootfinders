@@ -13,6 +13,7 @@ c
         external test_fun3
         external test_fun4
         external test_fun5
+        external test_fun_big
 
         call prini(6,13)
 
@@ -129,6 +130,29 @@ c
 !$      t1=omp_get_wtime()
         call zrootsq(ifprint,ifnewton,ifres,
      1      test_fun5,par1,par2,norder,eps,center,sqw,
+     2      nrtot,errest,roots,ier)
+        call cpu_time(t2)
+!$      t2=omp_get_wtime()
+        call prin2_long('roots found *',roots,2*nrtot)
+        call prin2('root error estimates *',errest,nrtot)
+        call prinf('ier *',ier,1)
+        call prinf('nrtot *',nrtot,1)
+        write(6,*) 'time (sec): ',t2-t1
+        print *,''
+
+c
+c === Test 6: polynomial with large roots ===
+c roots at 100+100i, 102+99i, 98+101i
+c tests dedup with large absolute values
+c
+        print *,'=== test_fun_big: roots near 100+100i ==='
+        norder=40
+        center=100d0+100d0*ima
+        sqw=10d0
+        call cpu_time(t1)
+!$      t1=omp_get_wtime()
+        call zrootsq(ifprint,ifnewton,ifres,
+     1      test_fun_big,par1,par2,norder,eps,center,sqw,
      2      nrtot,errest,roots,ier)
         call cpu_time(t2)
 !$      t2=omp_get_wtime()

@@ -10,7 +10,7 @@ c
         external zfun_sin10pole,zfun_sin100_3p,zfun_expipole
         external zfun_shifted3p,zfun_shifted,zfun_shifted2
         external zfun_sin100_3poff
-        external zfun_rootpole
+        external zfun_rootpole,zfun_sinz
 
         call prini(6,13)
         eps=epsilon(1d0)
@@ -166,6 +166,18 @@ c
      1      -5d0,5d0,20,eps,0.1d0,0,
      2      croots,nroots,errest,ier)
         call test_report(ifn,nroots,ier,errest)
+
+c
+c test 12: sin(z) on [100,110], roots at k*pi ~ 100-110
+c tests relative dedup tolerance for large roots
+c
+        print *,'=== sin(z) on [100,200], n=20, delta=0.1 ==='
+        ifn=1
+        call zroots_cheb_adap(ifn,zfun_sinz,par1,par2,
+     1      100d0,200d0,20,eps,0.1d0,0,
+     2      croots,nroots,errest,ier)
+        call test_report(ifn,nroots,ier,errest)
+        call prin2('croots *',croots,2*nroots)
 
         print *,'=== sin(100z)/(z-pi/100) on [-5,5], n=20 ==='
         ifn=1
@@ -349,6 +361,16 @@ c       sin(100z)/3poles slightly below real axis
         dg=p2*p3+p1*p3+p1*p2
         val=f/g
         dval=(df*g-f*dg)/g**2
+        return
+        end
+
+c       sin(z), for testing large roots
+        subroutine zfun_sinz(z,par1,par2,val,dval)
+        implicit real *8 (a-h,o-z)
+        real *8 par1(*),par2(*)
+        complex *16 z,val,dval
+        val=sin(z)
+        dval=cos(z)
         return
         end
 

@@ -498,7 +498,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccc
         ifput=1
         do j=1,n2
           d=abs(roots2(j)-roots1(i))
-          if(d.lt.tol) ifput=0
+          if(d.lt.tol*max(1d0,abs(roots1(i)))) ifput=0
         enddo
 
         if(ifput.eq.1) then

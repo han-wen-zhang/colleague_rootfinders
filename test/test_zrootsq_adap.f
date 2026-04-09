@@ -15,6 +15,7 @@ c
         external test_fun9
         external test_fun_pole1
         external test_fun_pole2
+        external test_fun_bigsin
 
         allocate(centers(10 000 000))
         call prini(6,13)
@@ -200,6 +201,37 @@ c
         write(6,*) 'time (sec): ',t2-t1
         print *,''
 
+c
+c === Test 8: sin(z-100-100i) on square center=100+100i, sqw=20 ===
+c roots at 100+100i+k*pi, large absolute values
+c tests dedup with large roots and subdivision
+c
+        print *,'=== sin(z-100-100i), center=100+100i, sqw=1000 ==='
+        norder=40
+        center=100d0+100d0*ima
+        sqw=1000d0
+        eps=1d-10
+        nexdp=0
+
+        call cpu_time(t1)
+!$      t1=omp_get_wtime()
+        call zrootsq_adap(0,ifnewton,1,
+     1      test_fun_bigsin,par1,par2,norder,eps,nexdp,center,sqw,
+     2      nrtot,errest,roots,centers,nc,ier)
+        call cpu_time(t2)
+!$      t2=omp_get_wtime()
+        call prinf('nrtot *',nrtot,1)
+        call prinf('nc (leaf boxes) *',nc,1)
+        call prinf('ier *',ier,1)
+        errmax=0
+        do i=1,nrtot
+          if(errest(i).gt.errmax) errmax=errest(i)
+        enddo
+        call prin2('max errest *',errmax,1)
+        call prin2_long('roots found *',roots,2*nrtot)
+        write(6,*) 'time (sec): ',t2-t1
+        print *,''
+
         stop
         end
 
@@ -207,6 +239,18 @@ c
 c
 c test functions with poles
 c
+
+c       sin(z-100-100i), roots at 100+100i+k*pi
+        subroutine test_fun_bigsin(z,par1,par2,val,dval)
+        implicit real *8 (a-h,o-z)
+        real *8 par1(*),par2(*)
+        complex *16 z,val,dval,ima,zs
+        data ima/(0d0,1d0)/
+        zs=z-(100d0+100d0*ima)
+        val=sin(zs)
+        dval=cos(zs)
+        return
+        end
 
         subroutine test_fun_pole1(z,par1,par2,val,dval)
         implicit real *8 (a-h,o-z)

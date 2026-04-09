@@ -199,3 +199,21 @@ c
 
         return
         end
+
+c
+c       3 roots far from origin: 100+100i, 102+99i, 98+101i
+c
+        subroutine test_fun_big(x,par1,par2,val,dval)
+        implicit real *8 (a-h,o-z)
+        dimension par1(*),par2(*)
+        complex *16 val,dval,x,ima
+        complex *16 z1,z2,z3
+        data ima/(0.0d0,1.0d0)/
+
+        z1=x-(100d0+100d0*ima)
+        z2=x-(102d0+99d0*ima)
+        z3=x-(98d0+101d0*ima)
+        val=z1*z2*z3
+        dval=z2*z3+z1*z3+z1*z2
+        return
+        end

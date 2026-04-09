@@ -35,6 +35,12 @@ c
         print *,'=== sin(100x) on [-1,1], n=200 ==='
         call test_noconv(-1d0,1d0,200)
 
+c
+c test 6: sin(x) on [100,110], large roots
+c
+        print *,'=== sin(x) on [100,200], n=400 ==='
+        call test_real_sin(100d0,200d0,400)
+
         stop
         end
 

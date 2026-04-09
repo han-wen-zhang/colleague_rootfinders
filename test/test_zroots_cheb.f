@@ -8,7 +8,7 @@ c
 
         external zfun_x2p1,zfun_shift,zfun_sincos
         external zfun_mixed,zfun_expim1,zfun_3near
-        external zfun_dist,zfun_dist2,zfun_layers
+        external zfun_dist,zfun_dist2,zfun_layers,zfun_sinz
 
         call prini(6,13)
         eps=epsilon(1d0)
@@ -151,7 +151,19 @@ c
         enddo
 
 c
-c test 10: delta effectiveness
+c test 10: sin(z) on [100,110], large roots
+c
+        print *,'=== sin(z) on [100,200], delta=0.1 ==='
+        call zroots_cheb(1,zfun_sinz,par1,par2,
+     1      100d0,200d0,400,eps,0.1d0,croots,nroots,errest,ier)
+        call prinf('nroots *',nroots,1)
+        call prinf('ier *',ier,1)
+        call prin2('croots *',croots,2*nroots)
+        call prin2('errest *',errest,nroots)
+        print *,''
+
+c
+c test 11: delta effectiveness
 c f(z) = (z-0.5)*(z-0.1i)*(z-0.3i)*(z-0.7i)*(z-1.5i)
 c roots at 0.5 (real), 0.1i, 0.3i, 0.7i, 1.5i
 c vary delta to see which roots are found
@@ -264,6 +276,15 @@ c       roots at 1-0.01i, -1+0.01i, 0.5i
         dval=(z+1d0-0.01d0*ima)*(z-0.5d0*ima)
      1      +(z-1d0+0.01d0*ima)*(z-0.5d0*ima)
      2      +(z-1d0+0.01d0*ima)*(z+1d0-0.01d0*ima)
+        return
+        end
+
+        subroutine zfun_sinz(z,par1,par2,val,dval)
+        implicit real *8 (a-h,o-z)
+        real *8 par1(*),par2(*)
+        complex *16 z,val,dval
+        val=sin(z)
+        dval=cos(z)
         return
         end
 
