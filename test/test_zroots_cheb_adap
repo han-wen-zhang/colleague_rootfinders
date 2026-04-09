@@ -13,7 +13,6 @@ gf77 $FFLAGS -c -o zroots_cheb.o ${SRC}zroots_cheb.f
 gf77 $FFLAGS -c -o herm_p_rank1.o ${SRC}herm_p_rank1.f
 gf77 $FFLAGS -c -o prini.o ${SRC}prini.f
 gf77 $FFLAGS -o int2 test_zroots_cheb_adap.o zroots_cheb.o \
-  herm_p_rank1.o prini.o \
--framework Accelerate
+  herm_p_rank1.o prini.o
 
 ./int2
