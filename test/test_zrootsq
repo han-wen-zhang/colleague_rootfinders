@@ -1,0 +1,26 @@
+#!/bin/bash
+shopt -s expand_aliases
+
+alias gf77='gfortran -std=legacy -w -ffixed-line-length-none'
+
+LIB=/Users/hanwen/Dropbox/Werk/myfortran/
+SRC=/Users/hanwen/Dropbox/Werk/myfortran/rootfinders/src/
+FFLAGS='-g -O0 -fcheck=all -fbacktrace -fopenmp'
+
+rm -f *.o *.txt *.m int2
+
+gf77 $FFLAGS -c test_zrootsq.f
+gf77 $FFLAGS -c -o ztest_functions.o ${SRC}ztest_functions.f
+gf77 $FFLAGS -c -o zrootsq.o ${SRC}zrootsq.f
+gf77 $FFLAGS -c -o csym_p_rank1.o ${SRC}csym_p_rank1.f
+gf77 $FFLAGS -o int2 test_zrootsq.o ztest_functions.o zrootsq.o \
+  csym_p_rank1.o \
+  ${LIB}prini_new.o ${LIB}corrand.o ${LIB}mplot.o  \
+-framework Accelerate
+
+echo "=== OMP_NUM_THREADS=1 ==="
+OMP_NUM_THREADS=1 ./int2
+
+echo ""
+echo "=== OMP_NUM_THREADS=10 ==="
+OMP_NUM_THREADS=10 ./int2
