@@ -24,7 +24,7 @@ call droots_cheb_adap(ifnewton, fun, par1, par2, a, b, n, eps, nexdp,
      1    roots, nroots, errest, ier)
 ```
 
-- `fun(x, par1, par2, val, dval)` — real function with derivative
+- `fun(x, par1, par2, val, dval)` — real function; derivative `dval` is only used when Newton refinement is enabled (`ifnewton=1`)
 - `n` — Chebyshev expansion order (recommended 40-200)
 - No LAPACK dependency
 
@@ -38,7 +38,7 @@ call zroots_cheb_adap(ifnewton, fun, par1, par2,
      1    a, b, n, eps, delta, nexdp, croots, nroots, errest, ier)
 ```
 
-- `fun(z, par1, par2, val, dval)` — complex analytic function
+- `fun(z, par1, par2, val, dval)` — complex analytic function; derivative `dval` is only used when Newton refinement is enabled (`ifnewton=1`)
 - `delta` — semi-minor axis of Bernstein ellipse for root filtering
 - Finds complex roots in a strip near [a,b]
 - No LAPACK dependency
@@ -54,7 +54,7 @@ call zrootsq_adap(ifprint, ifnewton, ifres, fun, par1, par2,
      2    nrtot, errest, roots, centers, nc, ier)
 ```
 
-- `fun(z, par1, par2, val, dval)` — complex analytic function with derivative
+- `fun(z, par1, par2, val, dval)` — complex analytic function; derivative `dval` is only used when Newton refinement (`ifnewton=1`) or residue-based root counting (`ifres=1`) is enabled
 - `norder` — expansion order (max 100, recommended 40 for adaptive version)
 - `center` — center of search square (complex)
 - `sqw` — side length of search square
