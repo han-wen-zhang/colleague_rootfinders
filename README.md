@@ -1,14 +1,14 @@
 # Colleague Rootfinders
 
-A Fortran library for finding roots of analytic functions. Includes rootfinders for complex analytic functions inside a square in the complex plane, real functions on intervals, and complex analytic functions near real intervals.
+A Fortran library for finding roots of analytic functions. Includes rootfinders for real functions on intervals, complex analytic functions near real intervals, and complex analytic functions inside a square in the complex plane.
 
 ## Algorithms
 
 The library implements two complementary approaches:
 
-**Chebyshev expansion on intervals** ([arXiv:2102.12186](https://arxiv.org/abs/2102.12186)): Expands the function in a Chebyshev basis, constructs the colleague matrix, and finds roots as eigenvalues using an O(n²) Hermitian + rank-1 QR eigensolver with componentwise backward stability. Works for real or complex-valued functions on real intervals [a,b]. Adaptive binary subdivision for functions requiring high resolution. Modified from code written by Kirill Serkh.
+**Chebyshev expansion on intervals** ([arXiv:2102.12186](https://arxiv.org/abs/2102.12186)): Expands the function in a Chebyshev basis of order n on [a,b]. The three-term recurrence of the Chebyshev polynomials gives rise to the colleague matrix — a Hermitian tridiagonal matrix plus a rank-one correction — whose eigenvalues are the roots of the approximating polynomial. By exploiting the special structure of the matrix, these are computed using an O(n²) QR eigensolver with componentwise backward stability. Works for real or complex-valued functions on real intervals. Adaptive binary subdivision for functions requiring high resolution. Modified from code written by Kirill Serkh.
 
-**Polynomial expansion on squares** ([arXiv:2307.14494](https://arxiv.org/abs/2307.14494)): Expands a complex analytic function on the boundary of a square using polynomials orthogonal on the boundary (evaluated via three-term recurrence), then finds roots as eigenvalues of a generalized colleague matrix using an O(n²) QR algorithm with complex orthogonal rotations. Adaptive quadtree subdivision for large regions with many roots. Optional residue-based root counting for verification.
+**Polynomial expansion on squares** ([arXiv:2307.14494](https://arxiv.org/abs/2307.14494)): Expands a complex analytic function on the boundary of a square in a basis of order n consisting of special polynomials constructed from an unconjugated inner product with random weights, which satisfy a three-term recurrence while remaining well-conditioned. The three-term recurrence gives rise to a generalized colleague matrix — a complex symmetric tridiagonal matrix plus a rank-one correction — whose eigenvalues are the roots of the approximating polynomial. As in the Chebyshev case above, these are computed using an O(n²) QR algorithm, here with complex orthogonal rotations. Adaptive quadtree subdivision for large regions with many roots. Optional residue-based root counting for verification.
 
 The Chebyshev method is provably componentwise backward stable. The square method achieves machine precision experimentally. Both support optional Newton refinement.
 
