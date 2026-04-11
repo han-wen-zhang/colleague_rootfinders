@@ -32,12 +32,10 @@ c
         center=0d0
         sqw=3d0
         call cpu_time(t1)
-!$      t1=omp_get_wtime()
         call zrootsq(ifprint,ifnewton,ifres,
      1      test_fun1,par1,par2,norder,eps,center,sqw,
      2      nrtot,errest,roots,ier)
         call cpu_time(t2)
-!$      t2=omp_get_wtime()
         call prin2_long('roots found *',roots,2*nrtot)
         call prin2('root error estimates *',errest,nrtot)
         call prinf('ier *',ier,1)
@@ -55,12 +53,10 @@ c
         center=0d0
         sqw=3d0
         call cpu_time(t1)
-!$      t1=omp_get_wtime()
         call zrootsq(ifprint,ifnewton,ifres,
      1      test_fun2,par1,par2,norder,eps,center,sqw,
      2      nrtot,errest,roots,ier)
         call cpu_time(t2)
-!$      t2=omp_get_wtime()
         call prin2_long('roots found *',roots,2*nrtot)
         call prin2('root error estimates *',errest,nrtot)
         call prinf('ier *',ier,1)
@@ -79,12 +75,10 @@ c
         center=1d0-0.1d0*ima
         sqw=2.13d0
         call cpu_time(t1)
-!$      t1=omp_get_wtime()
         call zrootsq(ifprint,ifnewton,ifres,
      1      test_fun3,par1,par2,norder,eps,center,sqw,
      2      nrtot,errest,roots,ier)
         call cpu_time(t2)
-!$      t2=omp_get_wtime()
         call prin2_long('roots found *',roots,2*nrtot)
         call prin2('root error estimates *',errest,nrtot)
         call prinf('ier *',ier,1)
@@ -103,12 +97,10 @@ c
         center=0d0
         sqw=1.8d0
         call cpu_time(t1)
-!$      t1=omp_get_wtime()
         call zrootsq(ifprint,ifnewton,ifres,
      1      test_fun4,par1,par2,norder,eps,center,sqw,
      2      nrtot,errest,roots,ier)
         call cpu_time(t2)
-!$      t2=omp_get_wtime()
         call prin2_long('roots found *',roots,2*nrtot)
         call prin2('root error estimates *',errest,nrtot)
         call prinf('ier *',ier,1)
@@ -127,12 +119,10 @@ c
         center=0d0
         sqw=1.5d0
         call cpu_time(t1)
-!$      t1=omp_get_wtime()
         call zrootsq(ifprint,ifnewton,ifres,
      1      test_fun5,par1,par2,norder,eps,center,sqw,
      2      nrtot,errest,roots,ier)
         call cpu_time(t2)
-!$      t2=omp_get_wtime()
         call prin2_long('roots found *',roots,2*nrtot)
         call prin2('root error estimates *',errest,nrtot)
         call prinf('ier *',ier,1)
@@ -150,12 +140,10 @@ c
         center=100d0+100d0*ima
         sqw=10d0
         call cpu_time(t1)
-!$      t1=omp_get_wtime()
         call zrootsq(ifprint,ifnewton,ifres,
      1      test_fun_big,par1,par2,norder,eps,center,sqw,
      2      nrtot,errest,roots,ier)
         call cpu_time(t2)
-!$      t2=omp_get_wtime()
         call prin2_long('roots found *',roots,2*nrtot)
         call prin2('root error estimates *',errest,nrtot)
         call prinf('ier *',ier,1)

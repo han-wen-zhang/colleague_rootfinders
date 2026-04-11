@@ -36,12 +36,10 @@ c
         nexdp=1
 
         call cpu_time(t1)
-!$      t1=omp_get_wtime()
         call zrootsq_adap(0,ifnewton,1,
      1      test_fun1,par1,par2,norder,eps,nexdp,center,sqw,
      2      nrtot,errest,roots,centers,nc,ier)
         call cpu_time(t2)
-!$      t2=omp_get_wtime()
         call prinf('nrtot *',nrtot,1)
         call prinf('ier *',ier,1)
         write(6,*) 'time (sec): ',t2-t1
@@ -60,12 +58,10 @@ c
         nexdp=1
 
         call cpu_time(t1)
-!$      t1=omp_get_wtime()
         call zrootsq_adap(0,ifnewton,1,
      1      test_fun3,par1,par2,norder,eps,nexdp,center,sqw,
      2      nrtot,errest,roots,centers,nc,ier)
         call cpu_time(t2)
-!$      t2=omp_get_wtime()
         call prinf('nrtot *',nrtot,1)
         call prinf('ier *',ier,1)
         write(6,*) 'time (sec): ',t2-t1
@@ -84,12 +80,10 @@ c
         nexdp=1
 
         call cpu_time(t1)
-!$      t1=omp_get_wtime()
         call zrootsq_adap(0,ifnewton,1,
      1      test_fun6,par1,par2,norder,eps,nexdp,center,sqw,
      2      nrtot,errest,roots,centers,nc,ier)
         call cpu_time(t2)
-!$      t2=omp_get_wtime()
         call prinf('nrtot *',nrtot,1)
         call prinf('nc (leaf boxes) *',nc,1)
         call prinf('ier *',ier,1)
@@ -109,12 +103,10 @@ c
         nexdp=1
 
         call cpu_time(t1)
-!$      t1=omp_get_wtime()
         call zrootsq_adap(0,ifnewton,1,
      1      test_fun9,par1,par2,norder,eps,nexdp,center,sqw,
      2      nrtot,errest,roots,centers,nc,ier)
         call cpu_time(t2)
-!$      t2=omp_get_wtime()
         call prinf('nrtot *',nrtot,1)
         call prinf('nc (leaf boxes) *',nc,1)
         call prinf('ier *',ier,1)
@@ -134,12 +126,10 @@ c
         nexdp=0
 
         call cpu_time(t1)
-!$      t1=omp_get_wtime()
         call zrootsq_adap(0,ifnewton,1,
      1      test_fun9,par1,par2,norder,eps,nexdp,center,sqw,
      2      nrtot,errest,roots,centers,nc,ier)
         call cpu_time(t2)
-!$      t2=omp_get_wtime()
         call prinf('nrtot *',nrtot,1)
         call prinf('nc (leaf boxes) *',nc,1)
         call prinf('ier *',ier,1)
@@ -159,12 +149,10 @@ c
         nexdp=0
 
         call cpu_time(t1)
-!$      t1=omp_get_wtime()
         call zrootsq_adap(0,ifnewton,1,
      1      test_fun_pole1,par1,par2,norder,eps,nexdp,center,sqw,
      2      nrtot,errest,roots,centers,nc,ier)
         call cpu_time(t2)
-!$      t2=omp_get_wtime()
         call prinf('nrtot *',nrtot,1)
         call prinf('nc (leaf boxes) *',nc,1)
         call prinf('ier *',ier,1)
@@ -184,12 +172,10 @@ c
         nexdp=0
 
         call cpu_time(t1)
-!$      t1=omp_get_wtime()
         call zrootsq_adap(0,ifnewton,1,
      1      test_fun_pole2,par1,par2,norder,eps,nexdp,center,sqw,
      2      nrtot,errest,roots,centers,nc,ier)
         call cpu_time(t2)
-!$      t2=omp_get_wtime()
         call prinf('nrtot *',nrtot,1)
         call prinf('nc (leaf boxes) *',nc,1)
         call prinf('ier *',ier,1)
@@ -214,12 +200,10 @@ c
         nexdp=0
 
         call cpu_time(t1)
-!$      t1=omp_get_wtime()
         call zrootsq_adap(0,ifnewton,1,
      1      test_fun_bigsin,par1,par2,norder,eps,nexdp,center,sqw,
      2      nrtot,errest,roots,centers,nc,ier)
         call cpu_time(t2)
-!$      t2=omp_get_wtime()
         call prinf('nrtot *',nrtot,1)
         call prinf('nc (leaf boxes) *',nc,1)
         call prinf('ier *',ier,1)

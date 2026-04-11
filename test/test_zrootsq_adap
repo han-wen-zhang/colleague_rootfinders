@@ -4,7 +4,7 @@ shopt -s expand_aliases
 alias gf77='gfortran -std=legacy -w -ffixed-line-length-none'
 
 SRC=../src/
-FFLAGS='-fbacktrace -fopenmp'
+FFLAGS='-O2 -fbacktrace'
 
 rm -f *.o *.txt *.m int2
 

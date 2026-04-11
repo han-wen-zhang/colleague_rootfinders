@@ -4,7 +4,7 @@ shopt -s expand_aliases
 alias gf77='gfortran -std=legacy -w -ffixed-line-length-none'
 
 SRC=../src/
-FFLAGS='-fbacktrace -fopenmp'
+FFLAGS='-O2 -fbacktrace'
 
 rm -f *.o *.txt *.m int2
 
@@ -17,9 +17,4 @@ gf77 $FFLAGS -o int2 test_zrootsq.o ztest_functions.o zrootsq.o \
   csym_p_rank1.o prini.o \
 -framework Accelerate
 
-echo "=== OMP_NUM_THREADS=1 ==="
-OMP_NUM_THREADS=1 ./int2
-
-echo ""
-echo "=== OMP_NUM_THREADS=10 ==="
-OMP_NUM_THREADS=10 ./int2
+./int2
