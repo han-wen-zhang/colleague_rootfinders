@@ -1,6 +1,6 @@
 # Colleague Rootfinders
 
-A Fortran library for finding roots of analytic functions. Includes rootfinders for real functions on intervals, complex analytic functions near real intervals, and complex analytic functions inside a square in the complex plane.
+A Fortran library for finding all roots of functions in a specified region. Includes rootfinders for real functions on intervals, complex analytic functions near real intervals, and complex analytic functions inside a square in the complex plane.
 
 ## Algorithms
 
